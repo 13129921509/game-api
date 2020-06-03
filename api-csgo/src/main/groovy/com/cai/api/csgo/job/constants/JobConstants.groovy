@@ -1,0 +1,16 @@
+package com.cai.api.csgo.job.constants
+
+class JobConstants {
+    class TeamRank {
+        final static String API_NAME = 'csgo_team_rank'
+        final static String COLLECTION = 'csgo_team_rank'
+
+        //战队排名来源
+        static final String teamRankTableResource = "https://csgo.5eplay.com/api/data/rank/team?page={0}&field=&range="
+
+        static Integer maxPage = 50
+    }
+
+
+
+}

@@ -1,0 +1,4 @@
+rootProject.name = 'game-api'
+include 'api-csgo'
+include 'api-base'
+
