@@ -1,7 +1,7 @@
 package com.cai.api.csgo.job.controller
 
 import com.cai.api.base.JobAction
-import com.cai.api.csgo.job.service.ApiService
+import com.cai.api.csgo.job.service.TeamRankService
 import com.cai.general.util.response.ResponseMessage
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 class JobController implements JobAction{
 
     @Autowired
-    ApiService apiSvc
+    TeamRankService apiSvc
 
     @Override
     @RequestMapping('/refresh')

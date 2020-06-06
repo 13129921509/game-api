@@ -1,5 +1,6 @@
 package com.cai.api.base.log
 
+import com.cai.general.util.jackson.ConvertUtil
 import com.cai.mongo.service.MongoService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
@@ -15,7 +16,7 @@ class MongoLogHelper<T extends Log> implements LogHelper{
     boolean insertLog(Log log) {
         try {
             Assert.notNull(log.documentName,"documentName is not null!!!")
-            mongoSvc.insertWithExpireDays(log.documentName as String,log,30)
+            mongoSvc.insertWithExpireDays(log.documentName, ConvertUtil.JSON.convertValue(log, Map),30L)
             return true
         }catch(Throwable t){
             t.printStackTrace()
