@@ -10,7 +10,7 @@ class TeamRankDomain extends BaseApiDomain{
 
     String team_country_id
 
-    String team_logo
+    NetEntity team_logo
 
     String rank
 

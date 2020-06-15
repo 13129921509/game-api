@@ -3,6 +3,7 @@ package com.cai.api.csgo.job.service
 import com.cai.api.base.BaseService
 import com.cai.api.base.domain.ApiLog
 import com.cai.api.base.log.MongoLogHelper
+import com.cai.api.csgo.domain.NetEntity
 import com.cai.api.csgo.domain.TeamRankDomain
 import com.cai.api.csgo.job.constants.JobConstants
 import com.cai.general.util.http.HttpUtil
@@ -50,7 +51,7 @@ class TeamRankService extends BaseService{
         domain.team_name = date.team_name as String
         domain.team_tag = date.team_tag as String
         domain.team_country_id  = date.team_country_id as String
-        domain.team_logo  = date.team_logo as String
+        domain.team_logo  = new NetEntity(domain.team_name as String, JobConstants.TeamRank.splitImageAddr + date.team_logo as String)
         domain.rank  = date.rank as String
         domain.point  = date.point as String
         domain.bonus  = date.bonus as String
@@ -68,6 +69,9 @@ class TeamRankService extends BaseService{
         filter.append("team_name", domain.team_name)
         mgSvc.delete(collection, filter)
         mgSvc.insert(collection, ConvertUtil.JSON.convertValue(domain,Document))
+
+        InputStream is = new URL(domain.team_logo.addr).openStream()
+        mgSvc.gridFsUploadStream(is , domain.team_logo.name, 'logos', null, null)
         return ResponseMessageFactory.success()
 
     }
@@ -114,7 +118,7 @@ class TeamRankService extends BaseService{
                 }catch(Throwable t){
                     // todo 暂不处理
                     t.printStackTrace()
-                    message = t.message
+                    exceptionManager.logException(null, t)
                     return ResponseMessageFactory.error(t.message)
                 }finally{
                     ApiLog apiLog = new ApiLog()

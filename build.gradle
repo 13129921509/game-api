@@ -36,8 +36,8 @@ allprojects {
         testCompile 'junit:junit:4.12'
 
         compile group: 'org.gradle', name: 'gradle-core', version: '3.5'
-        compile group: 'com.cai', name: 'base-mongo', version: '1.1.1.RELEASE', changing: true
-        compile group: 'com.cai', name: 'base-general', version: '0.0.3.2-SNAPSHOT', changing: true
+        compile group: 'com.cai', name: 'base-mongo', version: '1.2.1.RELEASE', changing: true
+        compile group: 'com.cai', name: 'base-general', version: '0.0.4.7-SNAPSHOT', changing: true
     }
 
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'

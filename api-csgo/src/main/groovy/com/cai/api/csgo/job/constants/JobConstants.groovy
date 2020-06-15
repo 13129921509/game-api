@@ -7,6 +7,7 @@ class JobConstants {
         final static String ORIGIN_COLLECTION = 'origin_csgo_team_rank'
         final static String COLLECTION = 'csgo_team_rank'
 
+        static final String splitImageAddr = 'https://oss.5eplay.com/'
         //战队排名来源
         static final String teamRankTableResource = "https://csgo.5eplay.com/api/data/rank/team?page={0}&field=&range="
 

@@ -6,3 +6,9 @@ mongo:
   username:
   authenticationDatabase:
   connectionPerHost: 5
+
+app:
+  name: game-api
+  error-log:
+    collection: exception_log
+    expireDay: 180

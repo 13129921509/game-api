@@ -4,6 +4,8 @@ import com.cai.api.base.log.Log
 import com.cai.api.base.log.LogHelper
 import com.cai.api.base.log.MongoLogHelper
 import com.cai.general.util.jackson.ConvertUtil
+import com.cai.general.util.log.ErrorLogManager
+import com.cai.general.util.log.LogParser
 import com.cai.general.util.response.ResponseMessage
 import com.cai.mongo.service.MongoService
 import jdk.nashorn.internal.objects.annotations.Constructor
@@ -18,6 +20,9 @@ abstract class BaseService {
 
     @Autowired
     MongoService mgSvc
+
+    @Autowired
+    ErrorLogManager exceptionManager
 
     @Value('${mongo.database}')
     String db
