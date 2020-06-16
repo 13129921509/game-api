@@ -31,7 +31,6 @@ allprojects {
         }
         compile("org.springframework.boot:spring-boot-starter-actuator:$SPRING_BOOT_VERSION")
         compile 'org.codehaus.groovy:groovy-all:2.3.3'
-
         compile("org.springframework.boot:spring-boot-starter-web:$SPRING_BOOT_VERSION")
         testCompile("org.springframework.boot:spring-boot-starter-test:$SPRING_BOOT_VERSION")
         testCompile 'junit:junit:4.12'

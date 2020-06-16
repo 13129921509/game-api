@@ -58,6 +58,5 @@ abstract class BaseService {
         return rsp
     }
 
-    abstract ResponseMessage toApiData(Map date, String collection)
     abstract ResponseMessage afterRefresh()
 }
