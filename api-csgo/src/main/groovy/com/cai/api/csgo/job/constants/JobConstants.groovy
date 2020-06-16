@@ -1,7 +1,7 @@
 package com.cai.api.csgo.job.constants
 
 class JobConstants {
-    final static String DB = "api-csgo"
+    final static String DB = "api_csgo"
     class TeamRank {
         final static String API_NAME = 'csgo_team_rank'
         final static String ORIGIN_COLLECTION = 'origin_csgo_team_rank'

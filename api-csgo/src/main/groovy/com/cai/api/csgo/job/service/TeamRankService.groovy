@@ -1,6 +1,6 @@
 package com.cai.api.csgo.job.service
 
-import com.cai.ais.AisMessage
+import com.cai.ais.config.AisMessage
 import com.cai.api.base.BaseService
 import com.cai.api.base.domain.ApiLog
 import com.cai.api.base.log.MongoLogHelper

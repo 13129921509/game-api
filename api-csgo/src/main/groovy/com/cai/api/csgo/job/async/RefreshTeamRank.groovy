@@ -1,8 +1,8 @@
 package com.cai.api.csgo.job.async
 
-import com.cai.ais.AisMessage
-import com.cai.ais.AisService
 import com.cai.ais.annotation.ConsumerListener
+import com.cai.ais.config.AisMessage
+import com.cai.ais.config.AisService
 import com.cai.api.csgo.domain.NetEntity
 import com.cai.api.csgo.domain.TeamRankDomain
 import com.cai.api.csgo.job.constants.JobConstants
@@ -15,7 +15,7 @@ import org.bson.Document
 import org.springframework.beans.factory.annotation.Autowired
 
 @ConsumerListener(queue = "api.refresh.team-rank", exchangeName = "api.csgo.team.refresh")
-class RefreshTeamRank extends AisService<AisMessage>{
+class RefreshTeamRank extends AisService<AisMessage> {
 
     @Autowired
     TeamRankService trSvc
@@ -24,11 +24,12 @@ class RefreshTeamRank extends AisService<AisMessage>{
     MongoService mgSvc
 
     @Override
-    void process(AisMessage msg) {
+    Object process(AisMessage msg) {
         try{
             mgSvc.setDatabase(JobConstants.DB)
             Map value = msg.getBody() as Map
             toApiData(value, JobConstants.TeamRank.COLLECTION)
+            null
         }catch(Throwable t){
             t.printStackTrace()
             trSvc.exceptionManager.logException(null , t)
