@@ -1,5 +1,6 @@
 package com.cai.api.csgo.job.service
 
+import com.cai.ais.AisMessage
 import com.cai.api.base.BaseService
 import com.cai.api.base.domain.ApiLog
 import com.cai.api.base.log.MongoLogHelper
@@ -111,7 +112,10 @@ class TeamRankService extends BaseService{
                     data.each {Map value->
                         value.put('created', LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE))
                         mgSvc.insertWithExpireDays(db, JobConstants.TeamRank.ORIGIN_COLLECTION, value, 30)
-                        toApiData(value, JobConstants.TeamRank.COLLECTION)
+                        AisMessage msg = new AisMessage()
+                        msg.setBody(value)
+                        aisSend.send(msg, "api.csgo.team.refresh")
+//                        toApiData(value, JobConstants.TeamRank.COLLECTION)
                     }
                     log.error("${LocalDate.now()}---$url end")
                     return ResponseMessageFactory.success()

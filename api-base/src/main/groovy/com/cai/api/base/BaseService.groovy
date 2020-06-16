@@ -1,5 +1,6 @@
 package com.cai.api.base
 
+import com.cai.ais.core.send.AisSend
 import com.cai.api.base.log.Log
 import com.cai.api.base.log.LogHelper
 import com.cai.api.base.log.MongoLogHelper
@@ -23,6 +24,9 @@ abstract class BaseService {
 
     @Autowired
     ErrorLogManager exceptionManager
+
+    @Autowired
+    AisSend aisSend
 
     @Value('${mongo.database}')
     String db

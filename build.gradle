@@ -29,6 +29,7 @@ allprojects {
         testCompile("org.springframework.boot:spring-boot-starter-test:$SPRING_BOOT_VERSION") {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
+        compile("org.springframework.boot:spring-boot-starter-actuator:$SPRING_BOOT_VERSION")
         compile 'org.codehaus.groovy:groovy-all:2.3.3'
 
         compile("org.springframework.boot:spring-boot-starter-web:$SPRING_BOOT_VERSION")
@@ -38,6 +39,7 @@ allprojects {
         compile group: 'org.gradle', name: 'gradle-core', version: '3.5'
         compile group: 'com.cai', name: 'base-mongo', version: '1.2.1.RELEASE', changing: true
         compile group: 'com.cai', name: 'base-general', version: '0.0.4.7-SNAPSHOT', changing: true
+        compile group: 'com.cai', name: 'base-ais-java', version: '1.0', changing: true
     }
 
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'

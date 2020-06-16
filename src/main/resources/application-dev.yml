@@ -7,6 +7,15 @@ mongo:
   authenticationDatabase:
   connectionPerHost: 5
 
+ais.mq:
+  host: localhost # connection host
+  port: 5672 # 5772 # connection port
+  username: guest
+  password: guest
+  concurrency: 2
+  maxConcurrency: 2
+  virtualHost: /api-game
+
 app:
   name: game-api
   error-log:
