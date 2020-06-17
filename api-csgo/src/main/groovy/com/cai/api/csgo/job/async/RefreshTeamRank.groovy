@@ -58,10 +58,9 @@ class RefreshTeamRank extends AisService<AisMessage> {
         Document filter = new Document()
         filter.append("team_name", domain.team_name)
         // 先删除后插入
-        mgSvc.delete(collection, filter)
-        mgSvc.insert(collection, ConvertUtil.JSON.convertValue(domain,Document))
-
+        mgSvc.deletedAndInsert(collection, filter, ConvertUtil.JSON.convertValue(domain,Document))
         InputStream is = new URL(domain.team_logo.addr).openStream()
+        mgSvc.gridFsDeleteFileByName(domain.team_logo.name)
         mgSvc.gridFsUploadStream(is , domain.team_logo.name, 'logos', null, null)
         return ResponseMessageFactory.success()
 
