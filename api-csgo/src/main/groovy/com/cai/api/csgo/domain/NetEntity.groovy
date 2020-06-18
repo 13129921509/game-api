@@ -6,6 +6,10 @@ class NetEntity {
 
     String addr
 
+    NetEntity(){
+
+    }
+
     NetEntity(String name, String addr) {
         this.name = name
         this.addr = addr
