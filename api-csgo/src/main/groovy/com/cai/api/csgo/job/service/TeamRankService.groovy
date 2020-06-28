@@ -75,7 +75,7 @@ class TeamRankService extends BaseService{
         List<ApiLog> logs = []
         String url
         String message
-        this.insertLog(logHelper, logs){
+        this.insertLog(logs){
             JobConstants.TeamRank.maxPage.times {
                 message = null
                 try{

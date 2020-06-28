@@ -51,7 +51,7 @@ class TeamRankDomain extends BaseApiDomain{
     }
 
     @Override
-    Object getCacheKey() {
+    String getCacheKey() {
         return "$DEFINE.table:$team_name"
     }
 }

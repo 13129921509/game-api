@@ -28,6 +28,8 @@ abstract class BaseService {
     @Autowired
     AisSend aisSend
 
+    @Autowired
+    com.cai.api.base.log.FileWriter fileWriter
     @Value('${mongo.database}')
     String db
 
@@ -48,11 +50,12 @@ abstract class BaseService {
         afterRefresh()
     }
 
-    ResponseMessage insertLog(LogHelper logHelper, List<Log> logs, Closure closure) {
+    ResponseMessage insertLog( List<Log> logs, Closure closure) {
         ResponseMessage rsp = closure.call()
         if (logs.size() > 0) {
             logs.each {
-                logHelper.insertLog(it)
+//                logHelper.insertLog(it)
+                fileWriter.writer(it)
             }
         }
         return rsp
