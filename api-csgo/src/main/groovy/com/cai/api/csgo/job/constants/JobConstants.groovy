@@ -15,5 +15,16 @@ class JobConstants {
     }
 
 
+    class ChinaTeamRank {
+        final static String API_NAME = 'csgo_china_team_rank'
+        final static String ORIGIN_COLLECTION = 'origin_csgo_china_team_rank'
+        final static String COLLECTION = 'csgo_china_team_rank'
+
+        static final String splitImageAddr = 'https://oss.5eplay.com/'
+        //战队排名来源
+        static final String teamRankTableResource = "https://csgo.5eplay.com/api/data/rank/team?page={0}&field=&range=cn"
+
+        static Integer maxPage = 50
+    }
 
 }

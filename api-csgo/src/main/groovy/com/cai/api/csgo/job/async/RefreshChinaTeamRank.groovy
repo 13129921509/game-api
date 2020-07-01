@@ -14,8 +14,8 @@ import com.cai.mongo.service.MongoService
 import org.bson.Document
 import org.springframework.beans.factory.annotation.Autowired
 
-@ConsumerListener(queue = "api.refresh.team.rank", exchangeName = "api.csgo.team.refresh")
-class RefreshTeamRank extends AisService<AisMessage> {
+@ConsumerListener(queue = "api.refresh.china.team.rank", exchangeName = "api.csgo.china.team.refresh")
+class RefreshChinaTeamRank extends AisService<AisMessage> {
 
     @Autowired
     TeamRankService trSvc
@@ -28,7 +28,7 @@ class RefreshTeamRank extends AisService<AisMessage> {
         try{
             mgSvc.setDatabase(JobConstants.DB)
             Map value = msg.getBody() as Map
-            toApiData(value, JobConstants.TeamRank.COLLECTION)
+            toApiData(value, JobConstants.ChinaTeamRank.COLLECTION)
             null
         }catch(Throwable t){
             t.printStackTrace()
@@ -41,7 +41,7 @@ class RefreshTeamRank extends AisService<AisMessage> {
         domain.team_name = date.team_name as String
         domain.team_tag = date.team_tag as String
         domain.team_country_id  = date.team_country_id as String
-        domain.team_logo  = new NetEntity(domain.team_name as String, JobConstants.TeamRank.splitImageAddr + date.team_logo as String)
+        domain.team_logo  = new NetEntity(domain.team_name as String, JobConstants.ChinaTeamRank.splitImageAddr + date.team_logo as String)
         domain.rank  = date.rank as String
         domain.point  = date.point as String
         domain.bonus  = date.bonus as String
