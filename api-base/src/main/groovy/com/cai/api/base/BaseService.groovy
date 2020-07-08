@@ -10,6 +10,7 @@ import com.cai.general.util.log.LogParser
 import com.cai.general.util.response.ResponseMessage
 import com.cai.mongo.service.MongoService
 import jdk.nashorn.internal.objects.annotations.Constructor
+import org.bson.types.ObjectId
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
@@ -62,4 +63,27 @@ abstract class BaseService {
     }
 
     abstract ResponseMessage afterRefresh()
+
+    protected boolean gridFsDeletedAndUploadStream(String name, String addr, bucket = null){
+        InputStream is
+        ObjectId id
+        try{
+            is = new URL(addr).openStream()
+            if (bucket){
+                mgSvc.gridFsDeleteFileByName(name, bucket)
+                id = mgSvc.gridFsUploadStream(is , name, bucket, null, null)
+            }else {
+                mgSvc.gridFsDeleteFileByName(name)
+                id = mgSvc.gridFsUploadStream(is , name, null, null, null)
+            }
+            return id != null
+        }catch(Throwable t){
+            exceptionManager.logException(null, t)
+            return false
+        }finally{
+            if (is)
+                is.close()
+        }
+
+    }
 }

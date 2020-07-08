@@ -27,4 +27,16 @@ class JobConstants {
         static Integer maxPage = 50
     }
 
+    class PlayerRank {
+        final static String API_NAME = 'player_rank'
+        final static String ORIGIN_COLLECTION = 'origin_player_rank'
+        final static String COLLECTION = 'player_rank'
+
+        static final String splitImageAddr = 'https://oss.5eplay.com/'
+        //战队排名来源
+        static final String teamRankTableResource = "https://csgo.5eplay.com/api/data/rank/player?page={0}&range=&major=1"
+
+        static Integer maxPage = 30
+    }
+
 }

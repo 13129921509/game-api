@@ -2,6 +2,7 @@ package com.cai.api.csgo.job.controller
 
 import com.cai.api.base.JobAction
 import com.cai.api.csgo.job.service.ChinaTeamRankService
+import com.cai.api.csgo.job.service.PlayerRankService
 import com.cai.api.csgo.job.service.TeamRankService
 import com.cai.api.csgo.message.ApiMessage
 import com.cai.general.util.response.ResponseMessage
@@ -28,6 +29,9 @@ class JobController implements JobAction{
     @Autowired
     ChinaTeamRankService ctrSvc
 
+    @Autowired
+    PlayerRankService prSvc
+
     @Override
     @RequestMapping(method = RequestMethod.POST, value = '/refresh')
     ResponseMessage refresh() {
@@ -40,6 +44,8 @@ class JobController implements JobAction{
             if (!(rsp = trSvc.refresh()).isSuccess)
                 return rsp
             if (!(rsp = ctrSvc.refresh()).isSuccess)
+                return rsp
+            if (!(rsp = prSvc.refresh()).isSuccess)
                 return rsp
             return rsp
         }catch(Throwable t){
