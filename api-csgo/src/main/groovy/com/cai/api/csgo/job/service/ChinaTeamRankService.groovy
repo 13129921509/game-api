@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service
 import java.text.MessageFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.stream.IntStream
 
 @Service
 class ChinaTeamRankService extends BaseService{
@@ -61,7 +62,7 @@ class ChinaTeamRankService extends BaseService{
         String url
         String message
         this.insertLog(logs){
-            JobConstants.ChinaTeamRank.maxPage.times {
+            IntStream.rangeClosed(0, JobConstants.ChinaTeamRank.maxPage).parallel().forEach{
                 message = null
                 try{
                     url = MessageFormat.format(resourceUrl, it)

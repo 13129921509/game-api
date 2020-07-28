@@ -32,6 +32,7 @@ import java.text.MessageFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.stream.IntStream
 
 @Service
 class TeamRankService extends BaseService{
@@ -76,7 +77,7 @@ class TeamRankService extends BaseService{
         String url
         String message
         this.insertLog(logs){
-            JobConstants.TeamRank.maxPage.times {
+            IntStream.rangeClosed(0, JobConstants.TeamRank.maxPage).parallel().forEach{
                 message = null
                 try{
                     url = MessageFormat.format(resourceUrl, it)
