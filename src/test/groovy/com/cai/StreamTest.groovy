@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 import org.testng.Assert
 
+import java.util.concurrent.ForkJoinPool
+import java.util.concurrent.ForkJoinTask
+import java.util.concurrent.RecursiveTask
 import java.util.stream.DoubleStream
 import java.util.stream.IntStream
 
@@ -48,5 +51,50 @@ class StreamTest {
             v1 + v2
         }).orElse(0)
         println sum
+    }
+
+    @Test
+    void fork_joinTest(){
+        Integer[] array = new Integer[120]
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (Math.random() * 1000)
+        }
+        ForkJoinPool pool = new ForkJoinPool()
+        ForkJoinTask<Integer> res = pool.submit(new SumTask<Integer>(array, 0, array.length))
+        println res.invoke()
+        pool.shutdown()
+    }
+
+
+    class SumTask<T> extends RecursiveTask<T>{
+
+        int tail,end
+        T[] arrays
+        final static Integer FLAG = 10
+
+        SumTask(T[] arrays, int tail, int end) {
+            this.tail = tail
+            this.end = end
+            this.arrays = arrays
+        }
+
+        @Override
+        protected T compute() {
+            if (end - tail <= FLAG){
+                int res = 0
+                for (int i = tail; i < end ; i++){
+                    res += arrays[i]
+                }
+                return res
+            }else{
+                int middle = (end + tail)/2
+                println "$tail - $middle - $end"
+                SumTask<T> tailTask = new SumTask<>(arrays, tail, middle)
+                SumTask<T> endTask = new SumTask<>(arrays, middle, end)
+                tailTask.fork()
+                endTask.fork()
+                return tailTask.join() + endTask.join()
+            }
+        }
     }
 }

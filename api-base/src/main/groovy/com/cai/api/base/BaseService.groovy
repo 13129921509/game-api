@@ -54,8 +54,10 @@ abstract class BaseService {
     ResponseMessage insertLog( List<Log> logs, Closure closure) {
         ResponseMessage rsp = closure.call()
         if (logs.size() > 0) {
-            logs.each {
-//                logHelper.insertLog(it)
+//            logs.each {
+////                logHelper.insertLog(it)
+//            }
+            logs.parallelStream().forEach{
                 fileWriter.writer(it)
             }
         }
