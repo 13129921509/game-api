@@ -77,7 +77,7 @@ class TeamRankService extends BaseService{
         String url
         String message
         this.insertLog(logs){
-            IntStream.rangeClosed(0, JobConstants.TeamRank.maxPage).parallel().forEach{
+            JobConstants.TeamRank.maxPage.times{
                 message = null
                 try{
                     url = MessageFormat.format(resourceUrl, it)

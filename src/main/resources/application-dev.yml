@@ -21,7 +21,7 @@ redis:
   port: 6379
   password:
   database: 3
-  max-active: 200
+  max-active: 10
   max-wait: -1
   max-idle: 8
   timeout: 0
@@ -34,7 +34,9 @@ app:
     expireDay: 180
   log:
     isUse: true
-    filePath: src/main/resources/log
+    filePath: E:\\ittx\\game-api\\log\\
+    prefix: game-api
+    maxFileSize: 65536
 
 login:
   maxStillState: 300000 # ms

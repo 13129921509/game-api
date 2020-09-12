@@ -51,7 +51,7 @@ class PlayerRankService extends BaseService{
         String url
         String message
         this.insertLog(logs){
-            IntStream.rangeClosed(0, JobConstants.PlayerRank.maxPage).parallel().forEach{
+            JobConstants.PlayerRank.maxPage.times{
                 message = null
                 try{
                     url = MessageFormat.format(resourceUrl, it)

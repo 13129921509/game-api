@@ -62,7 +62,7 @@ class ChinaTeamRankService extends BaseService{
         String url
         String message
         this.insertLog(logs){
-            IntStream.rangeClosed(0, JobConstants.ChinaTeamRank.maxPage).parallel().forEach{
+            JobConstants.ChinaTeamRank.maxPage.times{
                 message = null
                 try{
                     url = MessageFormat.format(resourceUrl, it)

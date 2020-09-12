@@ -57,7 +57,7 @@ abstract class BaseService {
 //            logs.each {
 ////                logHelper.insertLog(it)
 //            }
-            logs.parallelStream().forEach{
+            logs.forEach{
                 fileWriter.writer(it)
             }
         }
