@@ -36,9 +36,9 @@ allprojects {
         testCompile 'junit:junit:4.12'
 
         compile group: 'org.gradle', name: 'gradle-core', version: '3.5'
-        compile group: 'com.cai', name: 'base-mongo', version: '1.2.5.RELEASE', changing: true
+        compile group: 'com.cai', name: 'base-mongo', version: '1.2.6.RELEASE', changing: true
         compile group: 'com.cai', name: 'base-general', version: '0.0.6.4-SNAPSHOT', changing: true
-        compile group: 'com.cai', name: 'base-ais-java', version: '1.0.0.RELEASE', changing: true
+        compile group: 'com.cai', name: 'base-ais-java', version: '1.0.1.RELEASE', changing: true
         compile group: 'com.cai', name: 'base-web', version: '0.0.2-SNAPSHOT', changing: true
         compile group: 'com.cai', name: 'base-redis', version: '1.1.2-RELEASE', changing: true
     }
