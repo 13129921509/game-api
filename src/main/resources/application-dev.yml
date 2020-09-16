@@ -1,3 +1,6 @@
+
+server.port: 30001
+
 mongo:
   host: 127.0.0.1
   port: 27017
@@ -34,7 +37,7 @@ app:
     expireDay: 180
   log:
     isUse: true
-    filePath: E:\\ittx\\game-api\\log\\
+    filePath: E:\\java\\game-api\\src\\main\\resources\\log\\
     prefix: game-api
     maxFileSize: 65536
 
@@ -44,4 +47,4 @@ login:
 
 web:
     accessInterval: 10000 # ms
-    isLoose: true
+    isLoose: false
