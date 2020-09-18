@@ -1,5 +1,6 @@
 package com.cai
 
+import com.cai.api.GameApiApplication
 import com.cai.api.csgo.job.service.TeamRankService
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -10,7 +11,7 @@ import org.testng.Assert
 
 import java.util.stream.IntStream
 
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = GameApiApplication.class)
 @RunWith(SpringJUnit4ClassRunner)
 class ApplicationTests {
     @Autowired
