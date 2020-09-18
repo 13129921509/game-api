@@ -2,8 +2,6 @@ package com.cai.api.base.log
 
 import com.cai.general.util.jackson.ConvertUtil
 import com.cai.redis.RedisLockService
-import com.cai.redis.RedisService
-
 import java.nio.charset.StandardCharsets
 import java.time.LocalDate
 import java.time.LocalDateTime
