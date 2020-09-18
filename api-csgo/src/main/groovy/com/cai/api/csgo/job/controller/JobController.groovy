@@ -7,6 +7,7 @@ import com.cai.api.csgo.job.service.TeamRankService
 import com.cai.api.csgo.message.ApiMessage
 import com.cai.general.util.response.ResponseMessage
 import com.cai.general.util.response.ResponseMessageFactory
+import com.cai.web.core.IgnoreAuth
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping

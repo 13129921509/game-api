@@ -1,8 +1,8 @@
 package com.cai.api.base.log
 
-interface FileWriter<E> {
+interface FileWriter<B, C>{
 
-    void writer(E vals)
+    void writer(C vals)
 
-    Map insertLogAndConvert(E obj)
+    C convert(B obj, Class<C> clazz)
 }

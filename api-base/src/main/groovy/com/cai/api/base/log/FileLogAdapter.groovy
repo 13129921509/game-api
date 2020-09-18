@@ -7,11 +7,9 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class FileLogAdapter<T extends LogHelper, E extends Log> implements FileWriter<E>{
+class FileLogAdapter<E extends Log, C> implements LogAdapter<E, C>{
 
     private BufferedWriter osw
-
-    T logHelper
 
     private volatile String fileName
 
@@ -29,6 +27,8 @@ class FileLogAdapter<T extends LogHelper, E extends Log> implements FileWriter<E
 
     private RedisLockService relSvc
 
+    private LogHelper<E> logHelper
+
     final private static String CREATE_LOG_FILE = "sys:op:createLogFile"
 
     FileLogAdapter(RedisLockService relSvc
@@ -45,15 +45,26 @@ class FileLogAdapter<T extends LogHelper, E extends Log> implements FileWriter<E
     }
 
     @Override
-    void writer(E log) {
-        try{
+    boolean insertLog(E log) {
+        writer(convert(log))
+        return logHelper.insertLog(log)
+    }
+
+    @Override
+    void writer(C vals) {
+        try {
             beforeWriter()
-            osw.append(insertLogAndConvert(log).toString() + "\n")
+            osw.append(vals.toString() + "\n")
             osw.flush()
         }catch(Throwable t){
             t.printStackTrace()
         }
     }
+
+    C convert(E obj, Class<C> clazz) {
+        return ConvertUtil.JSON.convertValue(obj, clazz)
+    }
+
 
     private void beforeWriter(){
         relSvc.tryOpLock(CREATE_LOG_FILE, {
@@ -68,13 +79,6 @@ class FileLogAdapter<T extends LogHelper, E extends Log> implements FileWriter<E
             this.file = new File(path + fileName + ".txt")
             buildAndOpenFileStream()
         })
-    }
-
-
-    @Override
-    Map insertLogAndConvert(E log) {
-        logHelper.insertLog(log as Log)
-        return ConvertUtil.JSON.convertValue(log, Map)
     }
 
     void finalize() throws Throwable {

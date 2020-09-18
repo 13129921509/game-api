@@ -30,7 +30,7 @@ abstract class BaseService {
     AisSend aisSend
 
     @Autowired
-    com.cai.api.base.log.FileWriter fileWriter
+    LogHelper<Log> logHelper
     @Value('${mongo.database}')
     String db
 
@@ -58,7 +58,7 @@ abstract class BaseService {
 ////                logHelper.insertLog(it)
 //            }
             logs.forEach{
-                fileWriter.writer(it)
+                logHelper.insertLog(it)
             }
         }
         return rsp
