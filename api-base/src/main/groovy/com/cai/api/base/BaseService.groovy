@@ -31,6 +31,7 @@ abstract class BaseService {
 
     @Autowired
     LogHelper<Log> logHelper
+
     @Value('${mongo.database}')
     String db
 

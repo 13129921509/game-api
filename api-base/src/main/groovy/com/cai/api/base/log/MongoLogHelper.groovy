@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import org.springframework.util.Assert
 
-@Component
 class MongoLogHelper<T extends Log> implements LogHelper{
 
-    @Autowired
     MongoService mongoSvc
+
+    MongoLogHelper(MongoService mongoSvc) {
+        this.mongoSvc = mongoSvc
+    }
 
     @Override
     boolean insertLog(Log log) {

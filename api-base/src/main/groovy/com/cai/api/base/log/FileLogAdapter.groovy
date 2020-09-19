@@ -1,7 +1,9 @@
 package com.cai.api.base.log
 
+import com.cai.api.base.GameApiException
 import com.cai.general.util.jackson.ConvertUtil
 import com.cai.redis.RedisLockService
+import org.springframework.stereotype.Component
 import java.nio.charset.StandardCharsets
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -31,26 +33,29 @@ class FileLogAdapter<E extends Log, C> implements LogAdapter<E, C>{
 
     final private static String CREATE_LOG_FILE = "sys:op:createLogFile"
 
+    Class<C> convertType
+
     FileLogAdapter(RedisLockService relSvc
                    , String path
                    , String prefix
                    , LogHelper logHelper
-                   , long maxFileSize){
+                   , long maxFileSize
+                   , Class convertType){
         this.relSvc = relSvc
         this.path = path
         this.prefix = prefix
         this.logHelper = logHelper
         this.maxFileSize = maxFileSize
+        this.convertType = convertType
         init()
     }
 
     @Override
     boolean insertLog(E log) {
-        writer(convert(log))
+        writer(convert(log, convertType))
         return logHelper.insertLog(log)
     }
 
-    @Override
     void writer(C vals) {
         try {
             beforeWriter()
@@ -105,9 +110,17 @@ class FileLogAdapter<E extends Log, C> implements LogAdapter<E, C>{
     }
 
     private void buildAndOpenFileStream(){
-        if (!file.exists())
-            file.createNewFile()
-        osw = new BufferedWriter(new java.io.FileWriter(file, true))
+        try{
+            if (!file.exists())
+                file.createNewFile()
+            osw = new BufferedWriter(new java.io.FileWriter(file, true))
+        }catch(Throwable e){
+            if (e instanceof IOException)
+                throw new GameApiException("路径: $file.parent 不存在")
+            else
+                throw e
+        }
+
     }
 
     private class NextFileName{

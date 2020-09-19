@@ -3,6 +3,7 @@ package com.cai.api.csgo.job.service
 import com.cai.ais.config.AisMessage
 import com.cai.api.base.BaseService
 import com.cai.api.base.domain.ApiLog
+import com.cai.api.base.log.LogHelper
 import com.cai.api.base.log.MongoLogHelper
 import com.cai.api.csgo.domain.NetEntity
 import com.cai.api.csgo.domain.TeamRankDomain
@@ -38,9 +39,6 @@ import java.util.stream.IntStream
 class TeamRankService extends BaseService{
 
     Logger log = LoggerFactory.getLogger(TeamRankService.class)
-
-    @Autowired
-    MongoLogHelper<ApiLog> logHelper
 
     @Override
     ResponseMessage refresh(){

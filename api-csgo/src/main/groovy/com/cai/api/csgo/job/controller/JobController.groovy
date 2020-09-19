@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController
  * scheduler/api => (scheduler -> api)
  */
 @RestController
-@RequestMapping('scheduler/api')
+@RequestMapping('/scheduler/api')
 class JobController implements JobAction{
 
     @Autowired
@@ -34,6 +34,7 @@ class JobController implements JobAction{
     PlayerRankService prSvc
 
     @Override
+    @IgnoreAuth
     @RequestMapping(method = RequestMethod.POST, value = '/refresh')
     ResponseMessage refresh() {
         return doFresh()
