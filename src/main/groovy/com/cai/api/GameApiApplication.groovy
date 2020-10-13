@@ -7,7 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan
 
-@ComponentScan("com.cai.*")
+@ComponentScan("com.cai")
 @SpringBootApplication
 class GameApiApplication extends SpringBootServletInitializer {
 

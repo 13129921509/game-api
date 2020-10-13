@@ -3,8 +3,6 @@ package com.cai.api.csgo.job.service
 import com.cai.ais.config.AisMessage
 import com.cai.api.base.BaseService
 import com.cai.api.base.domain.ApiLog
-import com.cai.api.base.log.LogHelper
-import com.cai.api.base.log.MongoLogHelper
 import com.cai.api.csgo.job.constants.JobConstants
 import com.cai.api.csgo.message.ApiMessage
 import com.cai.general.util.http.HttpUtil
@@ -12,18 +10,16 @@ import com.cai.general.util.response.ResponseMessage
 import com.cai.general.util.response.ResponseMessageFactory
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 import java.text.MessageFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.stream.IntStream
 
 @Service
-class ChinaTeamRankService extends BaseService{
+class ChinaTeamRankJobService extends BaseService{
 
-    Logger log = LoggerFactory.getLogger(ChinaTeamRankService.class)
+    Logger log = LoggerFactory.getLogger(ChinaTeamRankJobService.class)
 
     @Override
     ResponseMessage refresh(){

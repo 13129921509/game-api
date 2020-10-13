@@ -1,16 +1,14 @@
 package com.cai.api.csgo.job.controller
 
 import com.cai.api.base.JobAction
-import com.cai.api.csgo.job.service.ChinaTeamRankService
-import com.cai.api.csgo.job.service.PlayerRankService
-import com.cai.api.csgo.job.service.TeamRankService
+import com.cai.api.csgo.job.service.ChinaTeamRankJobService
+import com.cai.api.csgo.job.service.PlayerRankJobService
+import com.cai.api.csgo.job.service.TeamRankJobService
 import com.cai.api.csgo.message.ApiMessage
 import com.cai.general.util.response.ResponseMessage
 import com.cai.general.util.response.ResponseMessageFactory
 import com.cai.web.core.IgnoreAuth
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
@@ -25,13 +23,13 @@ import org.springframework.web.bind.annotation.RestController
 class JobController implements JobAction{
 
     @Autowired
-    TeamRankService trSvc
+    TeamRankJobService trSvc
 
     @Autowired
-    ChinaTeamRankService ctrSvc
+    ChinaTeamRankJobService ctrSvc
 
     @Autowired
-    PlayerRankService prSvc
+    PlayerRankJobService prSvc
 
     @Override
     @IgnoreAuth

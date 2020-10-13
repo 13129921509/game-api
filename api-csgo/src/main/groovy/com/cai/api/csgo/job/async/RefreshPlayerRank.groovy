@@ -1,15 +1,12 @@
 package com.cai.api.csgo.job.async
 
 import com.cai.ais.annotation.ConsumerListener
-import com.cai.ais.annotation.FanoutConsumerListener
 import com.cai.ais.config.AisMessage
 import com.cai.ais.config.AisService
 import com.cai.api.csgo.domain.NetEntity
 import com.cai.api.csgo.domain.PlayerRankDomain
-import com.cai.api.csgo.domain.TeamRankDomain
 import com.cai.api.csgo.job.constants.JobConstants
-import com.cai.api.csgo.job.service.PlayerRankService
-import com.cai.api.csgo.job.service.TeamRankService
+import com.cai.api.csgo.job.service.PlayerRankJobService
 import com.cai.general.util.jackson.ConvertUtil
 import com.cai.general.util.response.ResponseMessage
 import com.cai.general.util.response.ResponseMessageFactory
@@ -21,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired
 class RefreshPlayerRank extends AisService<AisMessage> {
 
     @Autowired
-    PlayerRankService prSvc
+    PlayerRankJobService prSvc
 
     @Autowired
     MongoService mgSvc

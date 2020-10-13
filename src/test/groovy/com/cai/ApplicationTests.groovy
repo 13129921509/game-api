@@ -1,13 +1,12 @@
 package com.cai
 
 import com.cai.api.GameApiApplication
-import com.cai.api.csgo.job.service.TeamRankService
+import com.cai.api.csgo.job.service.TeamRankJobService
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
-import org.testng.Assert
 
 import java.util.stream.IntStream
 
@@ -15,7 +14,7 @@ import java.util.stream.IntStream
 @RunWith(SpringJUnit4ClassRunner)
 class ApplicationTests {
     @Autowired
-    TeamRankService jobSvc
+    TeamRankJobService jobSvc
 
     @Test
     void test(){
