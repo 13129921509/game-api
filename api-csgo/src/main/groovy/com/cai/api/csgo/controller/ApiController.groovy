@@ -2,6 +2,7 @@ package com.cai.api.csgo.controller
 
 import com.cai.api.csgo.service.TeamRankService
 import com.cai.general.core.BaseController
+import com.cai.general.core.Session
 import com.cai.general.util.response.ResponseMessage
 import com.cai.web.core.IgnoreAuth
 import com.cai.web.core.IgnoreAuthStore
@@ -23,14 +24,9 @@ class ApiController extends BaseController{
     @Autowired
     TeamRankService trSvc
 
-    @Autowired
-    IgnoreAuthStore iaStore
-
     @IgnoreAuth
     @RequestMapping(path = "/teamRank", method = RequestMethod.GET)
     ResponseMessage getTeamRank(HttpServletRequest request, @RequestParam String page, @RequestParam String row){
-        println request.getServletPath()
-        println iaStore.getStore()
-        return trSvc.getTeamRank(page as Integer, row as Integer)
+        return trSvc.getTeamRank(getSession(request), page as Integer, row as Integer)
     }
 }
