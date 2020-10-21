@@ -2,6 +2,7 @@ package com.cai.api.csgo.service
 
 import com.cai.api.base.BaseService
 import com.cai.api.csgo.job.constants.JobConstants
+import com.cai.general.core.Session
 import com.cai.general.util.response.ResponseMessage
 import com.cai.general.util.response.ResponseMessageFactory
 import com.cai.mongo.service.MongoDataPaginationPlugin
@@ -18,7 +19,7 @@ class TeamRankService extends BaseService{
     MongoService mgSvc
 
 
-    ResponseMessage getTeamRank(int page, int row){
+    ResponseMessage getTeamRank(Session sess, int page, int row){
         List<Document> data = mgSvc.findListAndPageable(JobConstants.DB,JobConstants.TeamRank.COLLECTION, new Query(), new MongoDataPaginationPlugin(page, row))
         return ResponseMessageFactory.success("success", data)
     }
