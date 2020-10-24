@@ -17,7 +17,7 @@ ais.mq:
   password: guest
   concurrency: 10
   maxConcurrency: 10
-  virtualHost: /api-game
+  virtualHost: /api-game-2
 
 redis:
   host: localhost

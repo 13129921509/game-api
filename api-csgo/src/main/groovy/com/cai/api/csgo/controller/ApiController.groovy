@@ -25,8 +25,8 @@ class ApiController extends BaseController{
     TeamRankService trSvc
 
     @IgnoreAuth
-    @RequestMapping(path = "/teamRank", method = RequestMethod.GET)
-    ResponseMessage getTeamRank(HttpServletRequest request, @RequestParam String page, @RequestParam String row){
-        return trSvc.getTeamRank(getSession(request), page as Integer, row as Integer)
+    @RequestMapping(path = "/teamRank", method = RequestMethod.POST)
+    ResponseMessage getTeamRank(HttpServletRequest request, @RequestBody Map map){
+        return trSvc.getTeamRank(map.page as Integer, map.row as Integer, map.param as List<Map<String,Object>>)
     }
 }

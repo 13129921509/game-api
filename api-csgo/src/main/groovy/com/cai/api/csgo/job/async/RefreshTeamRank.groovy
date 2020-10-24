@@ -42,7 +42,7 @@ class RefreshTeamRank extends AisService<AisMessage> {
         domain.team_tag = date.team_tag as String
         domain.team_country_id  = date.team_country_id as String
         domain.team_logo  = new NetEntity(domain.team_name as String, JobConstants.TeamRank.splitImageAddr + date.team_logo as String)
-        domain.rank  = date.rank as String
+        domain.rank  = date.rank as Integer
         domain.point  = date.point as String
         domain.bonus  = date.bonus as String
         domain.rating  = date.rating as String

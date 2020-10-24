@@ -23,7 +23,7 @@ class TeamRankDomain extends BaseApiDomain{
 
     NetEntity team_logo
 
-    String rank
+    Integer rank = -1
 
     String point
 
