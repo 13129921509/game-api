@@ -7,6 +7,7 @@ import com.cai.general.util.response.ResponseMessage
 import com.cai.general.util.response.ResponseMessageFactory
 import com.cai.mongo.service.MongoDataPaginationPlugin
 import com.cai.mongo.service.MongoService
+import com.cai.mongo.service.criteria.CollectionSplitCriteriaBuilder
 import org.bson.Document
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.mongodb.core.query.Query
@@ -19,8 +20,8 @@ class TeamRankService extends BaseService{
     MongoService mgSvc
 
 
-    ResponseMessage getTeamRank(Session sess, int page, int row){
-        List<Document> data = mgSvc.findListAndPageable(JobConstants.DB,JobConstants.TeamRank.COLLECTION, new Query(), new MongoDataPaginationPlugin(page, row))
+    ResponseMessage getTeamRank(int page, int row, List<Map<String,Object>> param){
+        List<Document> data = mgSvc.findListAndPageable(JobConstants.DB,JobConstants.TeamRank.COLLECTION, new Query(CollectionSplitCriteriaBuilder.getCriteria(param)), new MongoDataPaginationPlugin(page, row))
         return ResponseMessageFactory.success("success", data)
     }
 
