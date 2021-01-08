@@ -32,7 +32,6 @@ class JobController implements JobAction{
     PlayerRankJobService prSvc
 
     @Override
-    @IgnoreAuth
     @RequestMapping(method = RequestMethod.POST, value = '/refresh')
     ResponseMessage refresh() {
         return doFresh()
