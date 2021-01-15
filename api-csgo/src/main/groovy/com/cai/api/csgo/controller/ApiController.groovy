@@ -1,5 +1,7 @@
 package com.cai.api.csgo.controller
 
+import com.cai.api.csgo.service.ChinaTeamRankService
+import com.cai.api.csgo.service.PlayRankService
 import com.cai.api.csgo.service.TeamRankService
 import com.cai.general.core.BaseController
 import com.cai.general.core.Session
@@ -24,9 +26,27 @@ class ApiController extends BaseController{
     @Autowired
     TeamRankService trSvc
 
+    @Autowired
+    ChinaTeamRankService ctrSvc
+
+    @Autowired
+    PlayRankService prSvc
+
     @IgnoreAuth
     @RequestMapping(path = "/teamRank", method = RequestMethod.POST)
     ResponseMessage getTeamRank(HttpServletRequest request, @RequestBody Map map){
         return trSvc.getTeamRank(map.page as Integer, map.row as Integer, map.param as List<Map<String,Object>>)
+    }
+
+    @IgnoreAuth
+    @RequestMapping(path = "/chinaTeamRank", method = RequestMethod.POST)
+    ResponseMessage getChinaTeamRank(HttpServletRequest request, @RequestBody Map map){
+        return ctrSvc.getChinaTeamRank(map.page as Integer, map.row as Integer, map.param as List<Map<String,Object>>)
+    }
+
+    @IgnoreAuth
+    @RequestMapping(path = "/playRank", method = RequestMethod.POST)
+    ResponseMessage getPlayRank(HttpServletRequest request, @RequestBody Map map){
+        return prSvc.getPlayRank(map.page as Integer, map.row as Integer, map.param as List<Map<String,Object>>)
     }
 }
