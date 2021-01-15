@@ -66,11 +66,11 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
-# 放开Actuator Web REST 端点,否则访问不到
-management:
-  endpoints:
-    enabled: true
-    web:
-      base-path: /actuator  # 访问根路径
-      exposure:
-        include: "*"
+## 放开Actuator Web REST 端点,否则访问不到
+#management:
+#  endpoints:
+#    enabled: true
+#    web:
+#      base-path: /actuator  # 访问根路径
+#      exposure:
+#        include: "*"
